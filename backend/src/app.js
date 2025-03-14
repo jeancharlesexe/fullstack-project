@@ -8,7 +8,7 @@ const express = require('express');
 const app = express();
 
 //  ========= TESTANDO DB ==========
-const db = require('./v1/config/database');
+const mysqldb = require('./v1/config/mysql/database');
 
 // ============ MIDDLEWARES =============
 app.use(express.json());
@@ -37,9 +37,9 @@ app.get('/', (req, res) => {
 
 
 // ========= ABRINDO SERVIDOR ==========
-const HOST = process.env.SV_HOST;
-const PORT = process.env.SV_PORT;
-const ENVIRONMENT = process.env.NODE_ENV;
+const HOST = process.env.SERVER_HOST;
+const PORT = process.env.SERVER_PORT;
+const ENVIRONMENT = process.env.SERVER_ENV;
 
 
 try {
@@ -53,7 +53,7 @@ try {
         res.json({ message: 'Teste bem-sucedido!' });
     });
 
-    console.log(db.execute("SELECT * FROM users"));
+    console.log(mysqldb.execute("SELECT * FROM users"));
 } catch (e) {
     console.log(`\x1b[31mErro ao inicializar o servidor\x1b[0m\n${e}`);
 }

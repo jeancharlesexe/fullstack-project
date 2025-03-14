@@ -1,4 +1,4 @@
-const userModel = require('../model/userModel');
+const userModel = require('../model/mysql/userModel');
 
 async function getAllUsers(req, res, next) {
   try {
