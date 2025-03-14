@@ -1,6 +1,6 @@
 const database = require('../../config/mysql/database');
 
-async function findAll() {
+async function findAllUsers() {
   try {
     const result = await database.execute('SELECT * FROM users');
     return result;
@@ -10,7 +10,7 @@ async function findAll() {
   }
 }
 
-async function findById(id) {
+async function findUserById(id) {
   try {
     const result = await database.execute('SELECT * FROM users WHERE id = ?', [id]);
     return result.length > 0 ? result[0] : null;
@@ -20,7 +20,7 @@ async function findById(id) {
   }
 }
 
-async function create(userData) {
+async function createUser(userData) {
   try {
     const { name, email, password } = userData;
     const result = await database.execute(
@@ -39,7 +39,7 @@ async function create(userData) {
   }
 }
 
-async function update(id, userData) {
+async function updateUser(id, userData) {
   try {
     const { name, email, password } = userData;
     const result = await database.execute(
@@ -57,17 +57,16 @@ async function update(id, userData) {
 async function deleteUser(id) {
   try {
     const result = await database.execute('DELETE FROM users WHERE id = ?', [id]);
-    return result.affectedRows > 0;
+    return result.affectedRows > 0; 
   } catch (error) {
     console.error('Erro ao excluir usuário:', error);
-    throw error;
+    throw error; er
   }
 }
-
 module.exports = {
-  findAll,
-  findById,
-  create,
-  update,
+  findAllUsers,
+  findUserById,
+  createUser,
+  updateUser,
   deleteUser
 };
