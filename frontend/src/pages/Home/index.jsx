@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-
+import ThemeToggle from "../../components/ui/ThemeToggle";
+import TestThemeToggle from "../../components/ui/TestThemeToggle";
 
 export default function Home() {
   return (
-    <div>
-    <h1>Página Inicial</h1>
-      <Link to="/login">Fazer Login</Link>
-    </div>
+    <>
+      <h1>Hello World!</h1>
+      <ThemeToggle />
+      <TestThemeToggle />
+    </>
   );
 }
