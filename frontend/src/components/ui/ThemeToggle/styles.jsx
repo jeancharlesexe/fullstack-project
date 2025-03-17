@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const ThemeToggleWrapper = styled.button`
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({theme}) => theme.colors.text};
+    background-color: ${({ theme }) => theme.brand.primary};
+    color: ${({theme}) => theme.typography.primary};
     border: none;
     border-radius: 20px;
     padding: 8px 16px;
