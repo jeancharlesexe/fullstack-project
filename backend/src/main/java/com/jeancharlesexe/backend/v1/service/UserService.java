@@ -39,6 +39,7 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
+
     public User create(User user) {
         if (user.getUsername() == null || user.getUsername().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be null or empty");

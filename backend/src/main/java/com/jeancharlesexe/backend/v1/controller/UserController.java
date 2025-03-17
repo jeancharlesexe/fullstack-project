@@ -48,8 +48,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
         }catch(IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-        catch(EntityExistsException e){
+        }catch(EntityExistsException e){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
