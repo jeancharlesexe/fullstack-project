@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS users (
 	username VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
 	password VARCHAR(255) NOT NULL,
-  createdAt DATETIME,
-  updatedAt DATETIME
+  created_At DATETIME,
+  updated_At DATETIME
 );
 
 select * from users;
