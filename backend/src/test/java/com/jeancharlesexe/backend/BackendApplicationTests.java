@@ -1,10 +1,10 @@
-package com.jeancharlesexe.fullstackproject;
+package com.jeancharlesexe.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FullstackProjectApplicationTests {
+class BackendApplicationTests {
 
     @Test
     void contextLoads() {

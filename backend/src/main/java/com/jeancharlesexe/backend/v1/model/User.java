@@ -1,4 +1,4 @@
-package com.jeancharlesexe.fullstackproject.v1.model;
+package com.jeancharlesexe.backend.v1.model;
 
 import jakarta.persistence.*;
 
