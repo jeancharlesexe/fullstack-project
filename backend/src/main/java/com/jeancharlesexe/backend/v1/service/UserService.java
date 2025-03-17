@@ -7,7 +7,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -29,8 +31,8 @@ public class UserService {
             throw new IllegalArgumentException("Id cannot be null");
         }
 
-        User userFound = userRepository.findById(id).get();
-        if(userFound == null){
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(!optionalUser.isPresent()){
             throw new EntityNotFoundException("User not found");
         }
 
@@ -38,14 +40,22 @@ public class UserService {
     }
 
     public User create(User user) {
-        if(user == null){
-            throw new IllegalArgumentException("User data cannot be null");
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be null or empty");
+        }
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
         }
 
         if(userRepository.existsUserByEmail(user.getEmail())){
             throw new EntityExistsException("Conflict with existing user. Email has been taken");
         }
 
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         return userRepository.save(user);
     }
 
@@ -62,22 +72,27 @@ public class UserService {
     }
 
     public User update(User user) {
-        if(user == null){
+        if (user == null) {
             throw new IllegalArgumentException("User data cannot be null");
         }
 
-        User userFound = userRepository.findById(user.getId()).get();
-        if(userFound == null){
+        Optional<User> optionalUser = userRepository.findById(user.getId());
+        if (!optionalUser.isPresent()) {
             throw new EntityNotFoundException("User not found");
         }
 
-        User probableUserConflict = userRepository.findUserByEmail(user.getEmail());
+        User userFound = optionalUser.get();
 
-        if(!probableUserConflict.getId().equals(userFound.getId())){
+        User probableUserConflict = userRepository.findUserByEmail(user.getEmail());
+        if (probableUserConflict != null && !probableUserConflict.getId().equals(userFound.getId())) {
             throw new EntityExistsException("Conflict with existing user. Email has been taken");
         }
 
-        return userRepository.save(user);
+        userFound.setUsername(user.getUsername());
+        userFound.setEmail(user.getEmail());
+        userFound.setPassword(user.getPassword());
+        userFound.setUpdatedAt(LocalDateTime.now());
+        return userRepository.save(userFound);
     }
 
 }

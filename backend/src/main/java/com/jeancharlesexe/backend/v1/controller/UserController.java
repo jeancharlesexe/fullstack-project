@@ -46,7 +46,10 @@ public class UserController {
         try{
             User createdUser = userService.create(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-        }catch(EntityExistsException e){
+        }catch(IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+        catch(EntityExistsException e){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -60,6 +63,8 @@ public class UserController {
             return ResponseEntity.ok(userService.update(user));
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }catch(EntityExistsException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }catch(IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }catch(Exception e){
@@ -71,7 +76,7 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
         try{
             userService.delete(id);
-            return ResponseEntity.ok().body("Usuário deletado com sucesso!");
+            return ResponseEntity.ok().body("User deleted successfully.");
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch(IllegalArgumentException e){
