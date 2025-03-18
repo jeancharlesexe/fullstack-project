@@ -23,7 +23,11 @@ public class UserService {
             throw new EntityNotFoundException("Users not found");
         }
 
-        return userRepository.findAll();
+        try{
+            return userRepository.findAll();
+        }catch(Exception e){
+            throw new RuntimeException("Error finding users: "+e);
+        }
     }
 
     public User findById(Integer id) {
@@ -36,7 +40,11 @@ public class UserService {
             throw new EntityNotFoundException("User not found");
         }
 
-        return userRepository.findById(id).get();
+        try{
+            return userRepository.findById(id).get();
+        }catch(Exception e){
+            throw new RuntimeException("Error finding user: "+e);
+        }
     }
 
 
@@ -55,9 +63,13 @@ public class UserService {
             throw new EntityExistsException("Conflict with existing user. Email has been taken");
         }
 
-        user.setCreatedAt(LocalDateTime.now());
-        user.setUpdatedAt(LocalDateTime.now());
-        return userRepository.save(user);
+        try{
+            user.setCreatedAt(LocalDateTime.now());
+            user.setUpdatedAt(LocalDateTime.now());
+            return userRepository.save(user);
+        }catch(Exception e){
+            throw new RuntimeException("Error creating user: "+e);
+        }
     }
 
     public void delete(Integer id) {
@@ -69,7 +81,11 @@ public class UserService {
             throw new EntityNotFoundException("User not found");
         }
 
-        userRepository.deleteById(id);
+        try{
+            userRepository.deleteById(id);
+        }catch(Exception e){
+            throw new RuntimeException("Error deleting user: "+e);
+        }
     }
 
     public User update(User user) {
@@ -89,11 +105,15 @@ public class UserService {
             throw new EntityExistsException("Conflict with existing user. Email has been taken");
         }
 
-        userFound.setUsername(user.getUsername());
-        userFound.setEmail(user.getEmail());
-        userFound.setPassword(user.getPassword());
-        userFound.setUpdatedAt(LocalDateTime.now());
-        return userRepository.save(userFound);
+        try{
+            userFound.setUsername(user.getUsername());
+            userFound.setEmail(user.getEmail());
+            userFound.setPassword(user.getPassword());
+            userFound.setUpdatedAt(LocalDateTime.now());
+            return userRepository.save(userFound);
+        }catch(Exception e){
+            throw new RuntimeException("Error updating user: "+e);
+        }
     }
 
 }

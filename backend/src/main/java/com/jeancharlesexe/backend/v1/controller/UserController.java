@@ -2,6 +2,8 @@ package com.jeancharlesexe.backend.v1.controller;
 
 import com.jeancharlesexe.backend.v1.model.User;
 import com.jeancharlesexe.backend.v1.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +13,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Users API - v1", description = "Users management - endpoints")
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "Search users", description = "Returns all users found in the database")
     @GetMapping
     public ResponseEntity<?> getAllUsers() {
         try{
-            return ResponseEntity.ok(userService.findAll());
+            List<User> usersFound = userService.findAll();
+            return ResponseEntity.status(HttpStatus.OK).body(usersFound);
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch(Exception e){
@@ -28,10 +33,12 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Search user by ID", description = "Returns only one user found by ID in the database")
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Integer id) {
         try{
-            return ResponseEntity.ok(userService.findById(id));
+            User userFound = userService.findById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(userFound);
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch(IllegalArgumentException e){
@@ -41,6 +48,7 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Register a user", description = "Registers a user in the database")
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
         try{
@@ -55,11 +63,13 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Update a user by ID", description = "Update a user in the database by ID")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody User user) {
         try{
             user.setId(id);
-            return ResponseEntity.ok(userService.update(user));
+            User userUpdated = userService.update(user);
+            return ResponseEntity.status(HttpStatus.OK).body(userUpdated);
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch(EntityExistsException e){
@@ -71,11 +81,12 @@ public class UserController {
         }
     }
 
+    @Operation(summary = "Delete a user by ID", description = "Delete a user in the database by ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
         try{
             userService.delete(id);
-            return ResponseEntity.ok().body("User deleted successfully.");
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("User deleted successfully.");
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch(IllegalArgumentException e){
