@@ -1,5 +1,6 @@
 import React from "react";
 import ThemeToggle from "../../components/ui/ThemeToggle";
+import LoginForm from "../../components/form/LoginForm";
 import { 
     LoginWrapper,
     LogoWrapper,
@@ -24,15 +25,7 @@ export default function Login() {
                 </LogoWrapper>
                 <h1>Sign in to CJourney</h1>
                 <LoginBox>
-                    <label>
-                        Username
-                    </label>
-                    <input type="text" placeholder="Username or email"/>
-                    <label>
-                        Password
-                    </label>
-                    <input type="password" placeholder="∗∗∗∗∗∗∗∗∗"/>
-                    <button type="submit">Sign in</button>
+                    <LoginForm/>
                     <Separator>
                         <span>or</span>
                     </Separator>    

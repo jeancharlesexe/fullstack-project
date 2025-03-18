@@ -61,8 +61,8 @@ export const darkTheme = {
   
   brand: {
     primary: '#0064E6',
-    primaryLight: '#C3FDFF',
-    primaryDark: '#5D99C6',
+    primaryLight: '#4791DB',
+    primaryDark: '#115293',
     secondary: '#03DAC6',
     secondaryLight: '#66FFF9',
     secondaryDark: '#00A896'
