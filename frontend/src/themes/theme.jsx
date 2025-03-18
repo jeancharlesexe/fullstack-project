@@ -25,7 +25,6 @@ export const lightTheme = {
     secondaryDark: '#00A896'
   },
   
-  // Estados de interação
   interaction: {
     hover: 'rgba(0, 0, 0, 0.04)',
     focus: 'rgba(0, 0, 0, 0.12)',

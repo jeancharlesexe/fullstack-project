@@ -27,7 +27,7 @@ export default function Login() {
                     <label>
                         Username
                     </label>
-                    <input type="text" placeholder="Username or email..."/>
+                    <input type="text" placeholder="Username or email"/>
                     <label>
                         Password
                     </label>
