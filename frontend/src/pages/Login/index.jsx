@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+
 import ThemeToggle from "../../components/ui/ThemeToggle";
 import LoginForm from "../../components/form/LoginForm";
 import { 
@@ -12,7 +14,10 @@ import SocialLoginButtons from "../../components/auth/SocialLoginButtons";
 import Logo from '../../assets/icons/logo-original.svg';
 
 export default function Login() {
-
+    useEffect(() => {
+        document.title = "Login | Creative Journey";
+    }, []);
+    
     return(
         <>
             <ThemeToggle/>
@@ -20,7 +25,7 @@ export default function Login() {
                 <LogoWrapper>
                     <img src={Logo} alt="Logo"/>
                 </LogoWrapper>
-                <h1>Sign in to CJourney</h1>
+                <h1>Login to CJourney</h1>
                 <LoginBox>
                     <LoginForm/>
                     <Separator>

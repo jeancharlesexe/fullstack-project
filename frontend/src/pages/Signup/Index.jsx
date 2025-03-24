@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+
 import ThemeToggle from "../../components/ui/ThemeToggle";
 import { 
     SignupWrapper,
@@ -11,6 +13,10 @@ import SocialLoginButtons from "../../components/auth/SocialLoginButtons";
 import Logo from '../../assets/icons/logo-original.svg';
 
 export default function Signup() { 
+    useEffect(() => {
+        document.title = "Sign up | Creative Journey";
+    }, []);
+
     return(
         <>
             <ThemeToggle/>
@@ -20,7 +26,6 @@ export default function Signup() {
                 </LogoWrapper>
                 <h1>Sign up to CJourney</h1>
                 <SignupBox>
-                    <p>future form of signup</p>
                     <Separator>
                         <span>or</span>
                     </Separator>    
