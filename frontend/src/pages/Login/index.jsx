@@ -8,11 +8,8 @@ import {
     Separator,
     LoginFooter
 } from "./style";
-
+import SocialLoginButtons from "../../components/auth/SocialLoginButtons";
 import Logo from '../../assets/icons/logo-original.svg';
-import GithubLogo from '../../assets/icons/github-black-logo.svg';
-import GoogleLogo from '../../assets/icons/google-original-logo.svg';
-import MicrosoftLogo from '../../assets/icons/microsoft-original-logo.svg';
 
 export default function Login() {
 
@@ -30,17 +27,7 @@ export default function Login() {
                         <span>or</span>
                     </Separator>    
                     <LoginFooter>
-                        <div>
-                            <a href="#">
-                                <img src={GithubLogo} alt="Sign in with Google"/>
-                            </a>
-                            <a href="#">
-                                <img src={GoogleLogo} alt="Sign in with Google"/>
-                            </a>
-                            <a href="#">
-                                <img src={MicrosoftLogo} alt="Sign in with Google"/>
-                            </a>
-                        </div>
+                        <SocialLoginButtons actionType="login"/>
                         <span>
                             Don't have an account? <a href="/signup">Sign up</a>
                         </span>

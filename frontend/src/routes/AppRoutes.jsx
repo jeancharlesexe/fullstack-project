@@ -3,8 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Login from "../pages/Login";
+import Signup from "../pages/Signup/Index";
 
-import PrivateRoute from "../components/auth/PrivateRoutes";
+import PrivateRoute from "../components/auth/PrivateRoutes/PrivateRoutes";
 import Dashboard from "../pages/Dashboard";
 
 
@@ -13,6 +14,7 @@ export default function AppRoutes() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={
                 <PrivateRoute>
                     <Dashboard />

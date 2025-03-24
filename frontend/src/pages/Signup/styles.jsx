@@ -12,7 +12,7 @@ export const LogoWrapper = styled.div`
     }
 `
 
-export const LoginWrapper = styled.main`
+export const SignupWrapper = styled.main`
     background-color: ${({theme}) => theme.layout.background};
     width: 100%;
     height: 100%;
@@ -26,7 +26,7 @@ export const LoginWrapper = styled.main`
     }
 `;
 
-export const LoginBox = styled.div`
+export const SignupBox = styled.div`
     height: auto;
     width: 350px;
     background-color: ${({theme}) => theme.layout.surface};
@@ -66,7 +66,7 @@ export const Separator = styled.div`
     }
 `;
 
-export const LoginFooter = styled.footer`
+export const SignupFooter = styled.footer`
     height: auto;
     width: 100%;
     display: flex;

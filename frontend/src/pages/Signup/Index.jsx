@@ -1,24 +1,37 @@
 import React from "react";
+import ThemeToggle from "../../components/ui/ThemeToggle";
+import { 
+    SignupWrapper,
+    SignupBox,
+    LogoWrapper,
+    SignupFooter,
+    Separator
+} from "./styles";
+import SocialLoginButtons from "../../components/auth/SocialLoginButtons";
+import Logo from '../../assets/icons/logo-original.svg';
 
 export default function Signup() { 
     return(
-        <div>
-            <h1>Cadastro</h1>
-            <form>
-                <div>
-                    <label>Nome:</label>
-                    <input type="text" />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" />
-                </div>
-                <div>
-                    <label>Senha:</label>
-                    <input type="password" />
-                </div>
-                <button type="submit">Cadastrar</button>
-            </form>
-        </div>
+        <>
+            <ThemeToggle/>
+            <SignupWrapper>
+                <LogoWrapper>
+                    <img src={Logo} alt="Logo"/>
+                </LogoWrapper>
+                <h1>Sign up to CJourney</h1>
+                <SignupBox>
+                    <p>future form of signup</p>
+                    <Separator>
+                        <span>or</span>
+                    </Separator>    
+                    <SignupFooter>
+                        <SocialLoginButtons actionType="signup"/>
+                        <span>
+                            Do you have an account? <a href="/login">Log in</a>
+                        </span>
+                    </SignupFooter>
+                </SignupBox>
+            </SignupWrapper>
+        </>
     )
 } 
