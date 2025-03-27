@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class UserController {
         }catch(EntityNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }
 
@@ -50,7 +51,7 @@ public class UserController {
 
     @Operation(summary = "Register a user", description = "Registers a user in the database")
     @PostMapping
-    public ResponseEntity<?> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody User user) {
         try{
             User createdUser = userService.create(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
@@ -59,7 +60,7 @@ public class UserController {
         }catch(EntityExistsException e){
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
         }
     }
 

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="fd7ab793-d1c5-4bd5-b087-4e16314a747c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/v1/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/v1/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/v1/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/v1/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/v1/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jeancharlesexe/backend/v1/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +99,7 @@
       <workItem from="1742825509244" duration="82000" />
       <workItem from="1742825891975" duration="697000" />
       <workItem from="1743018544221" duration="39000" />
-      <workItem from="1743080546577" duration="3109000" />
+      <workItem from="1743080546577" duration="7429000" />
     </task>
     <servers />
   </component>

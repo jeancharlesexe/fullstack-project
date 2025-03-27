@@ -23,7 +23,6 @@ public class UserService {
             throw new EntityNotFoundException("Users not found");
         }
 
-
         return users;
     }
 

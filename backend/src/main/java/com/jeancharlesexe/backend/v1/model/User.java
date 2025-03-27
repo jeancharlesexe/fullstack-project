@@ -1,77 +1,37 @@
 package com.jeancharlesexe.backend.v1.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="users")
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
     private String username;
+
+    @NotBlank(message = "Email cannot be blank")
+    @Size(min = 3, max = 100, message = "Email must be between 3 and 100 characters")
+    @Email(message = "Email cannot be invalid")
     private String email;
+
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 16, max = 100, message = "Password must be between 16 and 100 characteres")
     private String password;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    public User(){}
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }
